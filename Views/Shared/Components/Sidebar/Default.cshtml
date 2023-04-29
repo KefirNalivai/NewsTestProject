@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@model IQueryable<NewsItem>
+
+@{
+	//ViewBag.Title = textField.MetaTitle;
+
+}
+
+<article>
+   @if (@Model.Any())
+	{
+
+		@foreach (NewsItem entity in @Model)
+		{
+				
+						<a href="#" class="image featured"><img src="~/images/@entity.TitleImagePath" alt=""></a>
+						<header>
+							<h3><a href="#">@entity.Title</a></h3>
+							<p>@entity.Subtitle</p>
+						</header>
+
+			<div style=" white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">
+
+				@Html.Raw(@entity.Text)
+						</div>
+
+			<a class="button alt icon solid fa-file-alt" asp-area="" asp-controller="News" asp-action="Index" asp-route-id="@entity.Id"></a>
+		}
+	}
+	<footer>
+

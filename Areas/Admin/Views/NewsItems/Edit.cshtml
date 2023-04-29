@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@model NewsItem
+@{
+    string strTitle = "Редактировать запись";  
+}
+
+<script src="~/js/ckeditor/ckeditor.js"></script>
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        <form asp-area="Admin" asp-controller="NewsItems" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="DateAdded" />
+            <input type="hidden" asp-for="TitleImagePath" />
+
+            <div asp-validation-summary="All"></div>
+            <div class="div-box">
+                <label>@Localizer["NewsTittle"]</label>
+                <input asp-for="Title" />
+                <span asp-validation-for="Title"></span>
+            </div>
+            <div class="div-box">
+                <label>@Localizer["NewsSubTittle"]</label>
+                <input asp-for="Subtitle" />
+                <span asp-validation-for="Subtitle"></span>
+            </div>
+            <div class="div-box">
+                <label>@Localizer["NewsText"]</label>
+                <textarea asp-for="Text"></textarea>
+                <span asp-validation-for="Text"></span>
+            </div>
+            <div class="div-box">
+                <label>@Localizer["NewsImage"]</label>
+                <input type="file" name="TitleImageFile" id="TitleImageFile" />
+                <div>
+                    <img class="img-block" style="max-width:300px" src="~/images/@Model.TitleImagePath" resource="~/images/@Model.TitleImagePath" />
+                </div>
+            </div>
+            
+           
+            <input type="submit" value='@Localizer["NewsButton"].Value' />
+        </form>
+    </div>
+</div>
+
+
+
+<script>
+    window.onload = function() {
+        var newCKEdit = CKEDITOR.replace('@Html.IdFor(x=>x.Text)');
+        newCKEdit.updateElement();
+    }
+</script>

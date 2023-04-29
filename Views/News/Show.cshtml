@@ -1,0 +1,24 @@
+﻿@model NewsItem
+@{
+    //ViewBag.Title = Model.MetaTitle;
+    //ViewBag.Description = Model.MetaDiscription;
+}
+
+
+<!-- Content -->
+
+<article>
+	@Model.DateAdded	
+	<header class="major">
+		<h2> @Model.Title</h2>
+		<p>@Model.Subtitle</p>
+	</header>
+
+	<span class="image featured"> <img class="img-block" src="~/images/@Model.TitleImagePath" /></span>
+
+	<p>
+		@Html.Raw(Model.Text)
+	</p>
+
+
+</article>

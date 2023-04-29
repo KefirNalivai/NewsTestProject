@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@model IQueryable<NewsItem>
+@{
+    string strTitle = "Панель администратора";
+    ViewBag.Title = strTitle;
+}
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        <h3>@Localizer["News"]</h3>
+        <div class="div-box">
+            <a asp-area="Admin" asp-controller="NewsItems" asp-action="Edit" asp-route-id="">@Localizer["AddNews"]</a>
+        </div>
+        @if (Model.Any())
+        {
+            <div>
+                @foreach (NewsItem entity in Model)
+                {
+                    <div>
+                        <a asp-area="Admin" asp-controller="NewsItems" asp-action="Edit" asp-route-id="@entity.Id">@Localizer["EditNews"]</a>
+                        |
+                        <form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="NewsItems" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@entity.Id">
+                            <a href="#" onclick="document.getElementById('form-@entity.Id').submit();">@Localizer["DelNews"]</a>
+                        </form>
+                        |
+                        <a asp-area="" asp-controller="News" asp-action="Index" asp-route-id="@entity.Id">
+                            @($"{entity.Title}")
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+    <p> </p>
+    <p> </p>
+    <div class="div-box">
+        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+            <input type="submit" value="@Localizer["Exit"]" />
+        </form>
+    </div>
+</div>
+
+

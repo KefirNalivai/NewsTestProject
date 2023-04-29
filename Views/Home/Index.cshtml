@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@model IQueryable<NewsItem>
+@{
+	//ViewBag.Title = textField.MetaTitle;
+}
+
+
+
+ 
+    
+<section class="box article-list">
+	<h2 class="icon fa-file-alt">@Localizer["NewsTittle"]</h2>
+
+	@if (Model.Any())
+	{
+
+		@foreach (NewsItem entity in Model)
+		{
+
+
+			<!-- Excerpt -->
+			<article class="box excerpt">
+				<a class="image left" asp-area="" asp-controller="News" asp-action="Index" asp-route-id="@entity.Id">
+					<img src="~/images/@entity.TitleImagePath" alt="" />
+				</a>
+				<div>
+					<header>
+						<span class="date">@entity.DateAdded.ToShortDateString()</span>
+						<h3><a asp-area="" asp-controller="News" asp-action="Index" asp-route-id="@entity.Id"> <p>@entity.Subtitle</p></a></h3>
+					</header>
+					<p>
+						@entity.Title
+					</p>
+				</div>
+			</article>
+		}
+		<footer style="text-align:center">
+			<a asp-area="" asp-controller="News" asp-action="Index" class="button alt icon solid fa-file-alt" style="background-color:red">@Localizer["ButtonText"]</a>
+		</footer>
+
+	}
+	else
+	{
+		<h1>@Localizer["ErrorNews"]</h1>
+	}
+</section>
+
+
+
+
+
+
+
+

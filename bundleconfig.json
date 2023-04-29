@@ -1,0 +1,20 @@
+[
+  {
+    "outputFileName": "wwwroot/css/main.min.css",
+    "inputFiles": [
+      "wwwroot/css/main.css",
+      "wwwroot/css/fontawesome-all.min.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/scripts.js",
+    "inputFiles": [
+      "wwwroot/js/jquery.min.js",
+      "wwwroot/js/jquery.dropotron.min.js",
+      "wwwroot/js/main.js",
+      "wwwroot/js/util.js",
+      "wwwroot/js/browser.min.js",
+      "wwwroot/js/breakpoints.min.js"
+    ]
+  }
+]

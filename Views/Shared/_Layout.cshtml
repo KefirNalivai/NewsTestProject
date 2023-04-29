@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	@await Html.PartialAsync("MetatagsPartial")
+	@await Html.PartialAsync("CssPartial")
+</head>
+<body class="homepage is-preload">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		@await Html.PartialAsync("HeaderPartial")
+
+		<!-- Main Wrapper -->
+		<div id="main-wrapper">
+			
+			<div class="wrapper style3">
+				
+				<div class="inner">
+					
+					<div class="container">
+						
+						<div class="row">
+
+							<div class="col-8 col-12-medium">
+								<div style="position: absolute; left:0px; top:0px;">
+									@await Html.PartialAsync("_SelectLanguagePartial")
+								</div>
+								@RenderBody()
+
+								
+								
+							</div>
+							<div class="col-4 col-12-medium">
+
+								<!-- Spotlight -->
+								<section class="box spotlight">
+									<h2 class="icon fa-file-alt">@Localizer["NewsTittle"].Value</h2>
+								@await Html.PartialAsync("SidebarPartial")
+									
+									</footer>
+									</article>
+								</section>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		@await Html.PartialAsync("FooterPartial")
+
+	</div>
+
+	@await Html.PartialAsync("ScriptsPartial")
+	
+
+</body>
+</html>
